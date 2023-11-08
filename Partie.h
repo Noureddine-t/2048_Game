@@ -16,6 +16,7 @@ private:
 public:
     Partie(int size) ;
     void jouer(Direction dir) ;
+    int calculerScore();
     Plateau& getPlateau();
     void afficher(const std::string& touche) ;
 

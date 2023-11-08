@@ -9,7 +9,7 @@
 
 class Plateau {
 private:
-    int N;
+    int size;
     int** tableau;
 
 public:
@@ -23,8 +23,12 @@ public:
 
     void direction(Direction dir);
 
+    int getSize();
+
     void affiche() ;
 
     void nouvelleCase();
+
+    int getTableau(int,int);
 };
 #endif //INC_2048_GAME_PLATEAU_H

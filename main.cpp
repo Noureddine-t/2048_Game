@@ -37,7 +37,6 @@ int main() {
         }
 
         match.jouer(direction);
-        match.getPlateau().nouvelleCase();
         match.afficher("ZQSD");
 
 

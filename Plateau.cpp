@@ -5,18 +5,18 @@
 #include "Plateau.h"
 
 
-Plateau::Plateau(int size) : N(size) {
-    tableau = new int *[N];
-    for (int i = 0; i < N; i++) {
-        tableau[i] = new int[N];
-        for (int j = 0; j < N; j++) {
+Plateau::Plateau(int size) : size(size) {
+    tableau = new int *[size];
+    for (int i = 0; i < size; i++) {
+        tableau[i] = new int[size];
+        for (int j = 0; j < size; j++) {
             tableau[i][j] = 0;
         }
     }
 }
 
 Plateau::~Plateau() {
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < size; i++) {
         delete[] tableau[i];
     }
     delete[] tableau;
@@ -24,8 +24,8 @@ Plateau::~Plateau() {
 
 
 bool Plateau::estDeplacable(Direction dir) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             int value = tableau[i][j];
             if (value != 0) {
                 int newRow = i;
@@ -39,7 +39,7 @@ bool Plateau::estDeplacable(Direction dir) {
                 } else if (dir == Direction::right) {
                     newCol++;
                 }
-                if (newRow >= 0 && newRow < N && newCol >= 0 && newCol < N) {
+                if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size) {
                     int newValue = tableau[newRow][newCol];
                     if (newValue == 0 || newValue == value) {
                         return true;
@@ -52,8 +52,8 @@ bool Plateau::estDeplacable(Direction dir) {
 }
 
 bool Plateau::estFusionnable(Direction dir) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             int value = tableau[i][j];
             if (value != 0) {
                 int newRow = i;
@@ -69,7 +69,7 @@ bool Plateau::estFusionnable(Direction dir) {
                     newCol++;
                 }
 
-                if (newRow >= 0 && newRow < N && newCol >= 0 && newCol < N) {
+                if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size) {
                     int newValue = tableau[newRow][newCol];
                     if (newValue == value) {
                         return true;
@@ -82,10 +82,10 @@ bool Plateau::estFusionnable(Direction dir) {
 }
 
 void Plateau::direction(Direction dir) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (tableau[i][j] == 0) {
-                for (int k = j + 1; k < N; k++) {
+                for (int k = j + 1; k < size; k++) {
                     if (tableau[i][k] != 0) {
                         tableau[i][j] = tableau[i][k];
                         tableau[i][k] = 0;
@@ -96,8 +96,8 @@ void Plateau::direction(Direction dir) {
         }
     }
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (tableau[i][j] != 0) {
                 int newRow = i;
                 int newCol = j;
@@ -112,7 +112,7 @@ void Plateau::direction(Direction dir) {
                     newCol++;
                 }
 
-                if (newRow >= 0 && newRow < N && newCol >= 0 && newCol < N) {
+                if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size) {
                     if (tableau[newRow][newCol] == tableau[i][j]) {
                         tableau[newRow][newCol] *= 2;
                         tableau[i][j] = 0;
@@ -122,10 +122,10 @@ void Plateau::direction(Direction dir) {
         }
     }
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (tableau[i][j] == 0) {
-                for (int k = j + 1; k < N; k++) {
+                for (int k = j + 1; k < size; k++) {
                     if (tableau[i][k] != 0) {
                         tableau[i][j] = tableau[i][k];
                         tableau[i][k] = 0;
@@ -138,8 +138,8 @@ void Plateau::direction(Direction dir) {
 }
 
 void Plateau::affiche() {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++)
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++)
             std::cout <<"| "<< tableau[i][j] << "\t";
 
         std::cout <<"| "<<std::endl;
@@ -149,10 +149,10 @@ void Plateau::affiche() {
 
 void Plateau::nouvelleCase() {
     int emptyCells = 0;
-    int emptyCellIndices[N * N][2]; // Tableau pour stocker les indices des cases vides.
+    int emptyCellIndices[size * size][2]; // Tableau pour stocker les indices des cases vides.
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (tableau[i][j] == 0) {
                 emptyCellIndices[emptyCells][0] = i;
                 emptyCellIndices[emptyCells][1] = j;
@@ -171,4 +171,12 @@ void Plateau::nouvelleCase() {
     int colIndex = emptyCellIndices[randomCell][1];
 
     tableau[rowIndex][colIndex] = targetValue;
+}
+
+int Plateau::getSize(){
+    return size;
+}
+
+int Plateau::getTableau(int i,int j){
+    return tableau[i][j];
 }
