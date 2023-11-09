@@ -17,6 +17,7 @@ void Partie::jouer(Direction dir) {
 }
 
 int Partie::calculerScore() {
+    score=0;
     for (int i = 0; i < plateau.getSize(); i++) {
         for (int j = 0; j < plateau.getSize(); j++) {
             score += plateau.getTableau(i, j);
@@ -26,7 +27,7 @@ int Partie::calculerScore() {
 }
 
 
-Plateau &Partie::getPlateau() {
+Plateau &Partie::getPlateau()  {
     return plateau;
 }
 

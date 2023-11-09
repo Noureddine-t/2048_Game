@@ -23,7 +23,7 @@ public:
 
     void direction(Direction dir);
 
-    int getSize();
+    int getSize() const;
 
     void affiche() ;
 

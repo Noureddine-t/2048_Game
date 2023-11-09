@@ -2,6 +2,7 @@
 // Created by noure on 07/11/2023.
 //
 #include "iostream"
+#include <iomanip>
 #include "Plateau.h"
 
 
@@ -139,11 +140,14 @@ void Plateau::direction(Direction dir) {
 
 void Plateau::affiche() {
     for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++)
-            std::cout <<"| "<< tableau[i][j] << "\t";
-
-        std::cout <<"| "<<std::endl;
-        std::cout <<"-----------------"<< std::endl;
+        for (int j = 0; j < size; j++) {
+            if (tableau[i][j] != 0)
+                std::cout << "|" << std::setw(5) << tableau[i][j] << std::setw(5);
+            else
+                std::cout << "|" << std::setw(5) <<" " << std::setw(5);  // Ou utilisez std::setw(4) pour une largeur fixe, par exemple
+        }
+        std::cout << "|" << std::endl;
+        std::cout << "-----------------------------------------" << std::endl;
     }
 }
 
@@ -173,7 +177,7 @@ void Plateau::nouvelleCase() {
     tableau[rowIndex][colIndex] = targetValue;
 }
 
-int Plateau::getSize(){
+int Plateau::getSize() const{
     return size;
 }
 
