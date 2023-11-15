@@ -10,20 +10,25 @@
 class Plateau {
 private:
     int size;
-    int** tableau;
+    int* tableau;
 
 public:
     Plateau(int size) ;
 
     ~Plateau() ;
 
-    bool estDeplacable(Direction dir) ;
+    //bool estDeplacable(Direction dir) ;
 
-    bool estFusionnable(Direction dir) ;
+    //bool estFusionnable(Direction dir ) ;
 
-    void direction(Direction dir);
+    void moveDirectionLeft();
+    void moveDirectionRight();
+    void moveDirectionUp();
+    void moveDirectionDown();
 
-    int getSize() const;
+    void moveDirection(Direction dir);
+
+     int getSize() const ;
 
     void affiche() ;
 

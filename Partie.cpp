@@ -7,14 +7,21 @@
 
 Partie::Partie(int size) : plateau(size), score(0), cptMouvement(0) {}
 
-
 void Partie::jouer(Direction dir) {
+                plateau.moveDirection(dir);
+                plateau.nouvelleCase();
+                cptMouvement++;
+    }
+
+
+/*void Partie::jouer(Direction dir) {
+
     if (plateau.estDeplacable(dir) || plateau.estFusionnable(dir)) {
-        plateau.direction(dir);
+        plateau.moveDirection(dir);
         plateau.nouvelleCase();
         cptMouvement++;
     }
-}
+}*/
 
 int Partie::calculerScore() {
     score=0;
@@ -26,7 +33,7 @@ int Partie::calculerScore() {
     return  score;
 }
 
-
+//pour le main lors du lancement du jeu
 Plateau &Partie::getPlateau()  {
     return plateau;
 }
