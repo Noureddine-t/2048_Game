@@ -57,10 +57,10 @@ void Plateau::moveDirectionUp() {
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
             if (tableau[size*j+i] == 0)
-                for (int k = i + 1; k < size; k++)
-                    if (tableau[size*j+k] != 0) {
-                        tableau[size*j+i] = tableau[size*j+k];
-                        tableau[size*j+k] = 0;
+                for (int k = j + 1; k < size; k++)
+                    if (tableau[size*k+i] != 0) {
+                        tableau[size*j+i] = tableau[size*k+i];
+                        tableau[size*k+i] = 0;
                         break;
                     }
 }
@@ -69,10 +69,10 @@ void Plateau::moveDirectionDown() {
     for (int i = 0; i < size; i++)
         for (int j = size - 1; j >= 0; j--)
             if (tableau[size*j+i] == 0)
-                for (int k = i - 1; k >= 0; k--)
-                    if (tableau[size*j+k] != 0) {
-                        tableau[size*j+i] = tableau[size*j+k];
-                        tableau[size*j+k] = 0;
+                for (int k = j - 1; k >= 0; k--)
+                    if (tableau[size*k+i] != 0) {
+                        tableau[size*j+i] = tableau[size*k+i];
+                        tableau[size*k+i] = 0;
                         break;
                     }
 }
@@ -92,6 +92,64 @@ void Plateau::moveDirection(Direction dir) {
         moveDirectionDown();
 }
 
+void Plateau::fusionDirectionLeft(){
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            if (tableau[size*i+j] == 0)
+                for (int k = j + 1; k < size; k++)
+                    if (tableau[size*i+k] != 0) {
+                        tableau[size*i+j] = tableau[size*i+k];
+                        tableau[size*i+k] = 0;
+                        break; //ou j++ ou k=4
+                    }
+}
+void Plateau::fusionDirectionRight(){
+    for (int i = 0; i < size; i++)
+        for (int j = size - 1; j >= 0; j--)
+            if (tableau[size*i+j] == 0)
+                for (int k = j - 1; k >= 0; k--)
+                    if (tableau[size*i+k] != 0) {
+                        tableau[size*i+j] = tableau[size*i+k];
+                        tableau[size*i+k] = 0;
+                        break;
+                    }
+}
+void Plateau::fusionDirectionUp(){
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            if (tableau[size*j+i] == 0)
+                for (int k = j + 1; k < size; k++)
+                    if (tableau[size*k+i] != 0) {
+                        tableau[size*j+i] = tableau[size*k+i];
+                        tableau[size*k+i] = 0;
+                        break;
+                    }
+}
+void Plateau::fusionDirectionDown(){
+    for (int i = 0; i < size; i++)
+        for (int j = size - 1; j >= 0; j--)
+            if (tableau[size*j+i] == 0)
+                for (int k = j - 1; k >= 0; k--)
+                    if (tableau[size*k+i] != 0) {
+                        tableau[size*j+i] = tableau[size*k+i];
+                        tableau[size*k+i] = 0;
+                        break;
+                    }
+}
+
+void Plateau::fusionDirection(Direction dir){
+    if(dir==Direction::right)
+        fusionDirectionRight();
+
+    if(dir==Direction::left)
+        fusionDirectionLeft();
+
+    if(dir==Direction::up)
+        fusionDirectionUp();
+
+    if(dir==Direction::down)
+        fusionDirectionDown();
+}
 
 void Plateau::affiche() {
     for (int i = 0; i < size; i++) {
