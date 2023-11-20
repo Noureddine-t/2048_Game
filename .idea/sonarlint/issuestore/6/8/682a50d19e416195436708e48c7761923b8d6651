@@ -1,4 +1,4 @@
 
-s	cpp:S5276"Yimplicit conversion loses integer precision: 'time_t' (aka 'long long') to 'unsigned int'(ÁÁçèùÿÿÿÿ
-J	cpp:S5020"0Replace "srand" with the facilities in <random>.(ÁÁçèùÿÿÿÿ
-4	cpp:S4962"Use the "nullptr" literal.(ÁÁçèùÿÿÿÿ
+z	cpp:S5276"Yimplicit conversion loses integer precision: 'time_t' (aka 'long long') to 'unsigned int'(ÁÁçèùÿÿÿÿ8Ú‡øî¾1
+Q	cpp:S5020"0Replace "srand" with the facilities in <random>.(ÁÁçèùÿÿÿÿ8ß‡øî¾1
+;	cpp:S4962"Use the "nullptr" literal.(ÁÁçèùÿÿÿÿ8à‡øî¾1

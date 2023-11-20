@@ -6,6 +6,7 @@
 #include "Plateau.h"
 #include <cstring>
 
+
 Plateau::Plateau(int size) : size(size) {
     tableau = new int[size * size];
     for (int i = 0; i < size; i++)
@@ -172,22 +173,6 @@ Plateau::Plateau(const Plateau &other) : size(other.size) {
 bool Plateau::operator!=(const Plateau &other) const {
     return std::memcmp(tableau, other.tableau, size * size * sizeof(int)) != 0;
 }
-/*
-void Plateau::affiche() {
-    std::cout << "-----------------------------------------" << std::endl;
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (tableau[size * i + j] != 0)
-                std::cout << "|" << std::setw(5) << tableau[size * i + j] << std::setw(5);
-            else
-                std::cout << "|" << std::setw(5) << " "
-                          << std::setw(5);  // Ou utilisez std::setw(4) pour une largeur fixe, par exemple
-        }
-        std::cout << "|" << std::endl;
-        std::cout << "-----------------------------------------" << std::endl;
-    }
-}
-*/
 
 void Plateau::affiche() {
     int maxNumber = 0;
