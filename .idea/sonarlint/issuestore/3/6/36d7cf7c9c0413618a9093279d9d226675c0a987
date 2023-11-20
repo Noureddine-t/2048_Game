@@ -1,0 +1,6 @@
+
+è	cpp:S3624
+"ËExplicitly define or delete the missing copy assignment operator so that it will not be implicitly provided. Additionally, you may consider defining the move assignment operator and the move constructor.(ù¿ƒŠ8Î»¡ç¾1
+k	cpp:S4963
+"ORemove this class' copy constructor so that the class follows the rule of Zero.(ù¿ƒŠ8Çú¹æ¾1
+I	cpp:S1709"/Add the "explicit" keyword to this constructor.(ò¯¸÷ùÿÿÿÿ

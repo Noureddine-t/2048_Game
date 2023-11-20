@@ -4,39 +4,74 @@
 #include "iostream"
 #include <iomanip>
 #include "Plateau.h"
-
+#include <cstring>
 
 Plateau::Plateau(int size) : size(size) {
-    tableau = new int [size * size];
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            tableau[size*i+j] = 0;
-        }
-    }
+    tableau = new int[size * size];
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            tableau[size * i + j] = 0;
 }
 
 Plateau::~Plateau() {
     delete[] tableau;
 }
 
-/*
-bool Plateau::estDeplacable(Direction dir) {
+bool Plateau::estDeplacable(Direction dir) const {
+    bool canMove = false;
+    if (dir == Direction::right) {
+        for (int i = 0; i < size; i++)
+            for (int j = size - 1; j >= 0; j--)
+                if (tableau[size * i + j] == 0)
+                    for (int k = j - 1; k >= 0; k--)
+                        if (tableau[size * i + k] != 0) {
+                            canMove = true;
+                            break;
+                        }
+    }
+    else if (dir == Direction::left) {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                if (tableau[size * i + j] == 0)
+                    for (int k = j + 1; k < size; k++) {
+                        if (tableau[size * i + k] != 0)
+                            canMove = true;
+                        break;
+                    }
+    }
+    else if (dir == Direction::up) {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                if (tableau[size * j + i] == 0)
+                    for (int k = j + 1; k < size; k++)
+                        if (tableau[size * k + i] != 0) {
+                            canMove = true;
+                            break;
+                        }
+    }
 
+    else if (dir == Direction::down) {
+        for (int i = 0; i < size; i++)
+            for (int j = size - 1; j >= 0; j--)
+                if (tableau[size * j + i] == 0)
+                    for (int k = j - 1; k >= 0; k--)
+                        if (tableau[size * k + i] != 0) {
+                        canMove = true;
+                        break;
+                }
+    }
+    return canMove;
 }
-bool Plateau::estFusionnable(Direction dir ) {
-
-}
-*/
 
 
 void Plateau::moveDirectionLeft() {
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
-            if (tableau[size*i+j] == 0)
+            if (tableau[size * i + j] == 0)
                 for (int k = j + 1; k < size; k++)
-                    if (tableau[size*i+k] != 0) {
-                        tableau[size*i+j] = tableau[size*i+k];
-                        tableau[size*i+k] = 0;
+                    if (tableau[size * i + k] != 0) {
+                        tableau[size * i + j] = tableau[size * i + k];
+                        tableau[size * i + k] = 0;
                         break; //ou j++ ou k=4
                     }
 }
@@ -44,11 +79,11 @@ void Plateau::moveDirectionLeft() {
 void Plateau::moveDirectionRight() {
     for (int i = 0; i < size; i++)
         for (int j = size - 1; j >= 0; j--)
-            if (tableau[size*i+j] == 0)
+            if (tableau[size * i + j] == 0)
                 for (int k = j - 1; k >= 0; k--)
-                    if (tableau[size*i+k] != 0) {
-                        tableau[size*i+j] = tableau[size*i+k];
-                        tableau[size*i+k] = 0;
+                    if (tableau[size * i + k] != 0) {
+                        tableau[size * i + j] = tableau[size * i + k];
+                        tableau[size * i + k] = 0;
                         break;
                     }
 }
@@ -56,11 +91,11 @@ void Plateau::moveDirectionRight() {
 void Plateau::moveDirectionUp() {
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
-            if (tableau[size*j+i] == 0)
+            if (tableau[size * j + i] == 0)
                 for (int k = j + 1; k < size; k++)
-                    if (tableau[size*k+i] != 0) {
-                        tableau[size*j+i] = tableau[size*k+i];
-                        tableau[size*k+i] = 0;
+                    if (tableau[size * k + i] != 0) {
+                        tableau[size * j + i] = tableau[size * k + i];
+                        tableau[size * k + i] = 0;
                         break;
                     }
 }
@@ -68,94 +103,115 @@ void Plateau::moveDirectionUp() {
 void Plateau::moveDirectionDown() {
     for (int i = 0; i < size; i++)
         for (int j = size - 1; j >= 0; j--)
-            if (tableau[size*j+i] == 0)
+            if (tableau[size * j + i] == 0)
                 for (int k = j - 1; k >= 0; k--)
-                    if (tableau[size*k+i] != 0) {
-                        tableau[size*j+i] = tableau[size*k+i];
-                        tableau[size*k+i] = 0;
+                    if (tableau[size * k + i] != 0) {
+                        tableau[size * j + i] = tableau[size * k + i];
+                        tableau[size * k + i] = 0;
                         break;
                     }
 }
 
 
 void Plateau::moveDirection(Direction dir) {
-   if(dir==Direction::right)
-       moveDirectionRight();
 
-    if(dir==Direction::left)
+    if (dir == Direction::right)
+        moveDirectionRight();
+    else if (dir == Direction::left)
         moveDirectionLeft();
-
-    if(dir==Direction::up)
+    else if (dir == Direction::up)
         moveDirectionUp();
-
-    if(dir==Direction::down)
+    else if (dir == Direction::down)
         moveDirectionDown();
 }
 
-void Plateau::fusionDirectionLeft(){
-    for (int i = 0; i < size; i++)
+bool Plateau::estFusionnable(Direction dir) const {
+    bool canFusion = false;
+    if (dir == Direction::right) {
+        for (int i = 0; i < size; i++)
+            for (int j = size - 1; j > 0; j--)
+                if (tableau[size * i + j] == tableau[size * i + j - 1])
+                    canFusion = true;
+    } else if (dir == Direction::left) {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size - 1; j++)
+                if (tableau[size * i + j] == tableau[size * i + j + 1])
+                    canFusion = true;
+    } else if (dir == Direction::up) {
         for (int j = 0; j < size; j++)
-            if (tableau[size*i+j] == 0)
-                for (int k = j + 1; k < size; k++)
-                    if (tableau[size*i+k] != 0) {
-                        tableau[size*i+j] = tableau[size*i+k];
-                        tableau[size*i+k] = 0;
-                        break; //ou j++ ou k=4
-                    }
-}
-void Plateau::fusionDirectionRight(){
-    for (int i = 0; i < size; i++)
-        for (int j = size - 1; j >= 0; j--)
-            if (tableau[size*i+j] == 0)
-                for (int k = j - 1; k >= 0; k--)
-                    if (tableau[size*i+k] != 0) {
-                        tableau[size*i+j] = tableau[size*i+k];
-                        tableau[size*i+k] = 0;
-                        break;
-                    }
-}
-void Plateau::fusionDirectionUp(){
-    for (int i = 0; i < size; i++)
+            for (int i = 0; i < size - 1; i++)
+                if (tableau[size * i + j] == tableau[size * (i + 1) + j])
+                    canFusion = true;
+    } else if (dir == Direction::down) {
         for (int j = 0; j < size; j++)
-            if (tableau[size*j+i] == 0)
-                for (int k = j + 1; k < size; k++)
-                    if (tableau[size*k+i] != 0) {
-                        tableau[size*j+i] = tableau[size*k+i];
-                        tableau[size*k+i] = 0;
-                        break;
-                    }
-}
-void Plateau::fusionDirectionDown(){
-    for (int i = 0; i < size; i++)
-        for (int j = size - 1; j >= 0; j--)
-            if (tableau[size*j+i] == 0)
-                for (int k = j - 1; k >= 0; k--)
-                    if (tableau[size*k+i] != 0) {
-                        tableau[size*j+i] = tableau[size*k+i];
-                        tableau[size*k+i] = 0;
-                        break;
-                    }
+            for (int i = size - 1; i > 0; i--)
+                if (tableau[size * i + j] == tableau[size * (i - 1) + j])
+                    canFusion = true;
+    }
+    return canFusion;
 }
 
-void Plateau::fusionDirection(Direction dir){
-    if(dir==Direction::right)
+void Plateau::fusionDirectionLeft() {
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size - 1; j++)
+            if (tableau[size * i + j] == tableau[size * i + j + 1]) {
+                tableau[size * i + j] *= 2;
+                tableau[size * i + j + 1] = 0;
+            }
+}
+
+void Plateau::fusionDirectionRight() {
+    for (int i = 0; i < size; i++)
+        for (int j = size - 1; j > 0; j--)
+            if (tableau[size * i + j] == tableau[size * i + j - 1]) {
+                tableau[size * i + j] *= 2;
+                tableau[size * i + j - 1] = 0;
+            }
+}
+
+void Plateau::fusionDirectionUp() {
+    for (int j = 0; j < size; j++)
+        for (int i = 0; i < size - 1; i++)
+            if (tableau[size * i + j] == tableau[size * (i + 1) + j]) {
+                tableau[size * i + j] *= 2;
+                tableau[size * (i + 1) + j] = 0;
+            }
+}
+
+void Plateau::fusionDirectionDown() {
+    for (int j = 0; j < size; j++)
+        for (int i = size - 1; i > 0; i--)
+            if (tableau[size * i + j] == tableau[size * (i - 1) + j]) {
+                tableau[size * i + j] *= 2;
+                tableau[size * (i - 1) + j] = 0;
+            }
+}
+
+void Plateau::fusionDirection(Direction dir) {
+    if (dir == Direction::right)
         fusionDirectionRight();
-
-    if(dir==Direction::left)
+    else if (dir == Direction::left)
         fusionDirectionLeft();
-
-    if(dir==Direction::up)
+    else if (dir == Direction::up)
         fusionDirectionUp();
-
-    if(dir==Direction::down)
+    else if (dir == Direction::down)
         fusionDirectionDown();
+}
+
+Plateau::Plateau(const Plateau &other) : size(other.size) {
+    tableau = new int[size * size];
+    std::memcpy(tableau, other.tableau, size * size * sizeof(int));
+}
+
+bool Plateau::operator!=(const Plateau &other) const {
+    return std::memcmp(tableau, other.tableau, size * size * sizeof(int)) != 0;
 }
 
 void Plateau::affiche() {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            if (tableau[size*i+j] != 0)
-                std::cout << "|" << std::setw(5) << tableau[size*i+j] << std::setw(5);
+            if (tableau[size * i + j] != 0)
+                std::cout << "|" << std::setw(5) << tableau[size * i + j] << std::setw(5);
             else
                 std::cout << "|" << std::setw(5) << " "
                           << std::setw(5);  // Ou utilisez std::setw(4) pour une largeur fixe, par exemple
@@ -171,7 +227,7 @@ void Plateau::nouvelleCase() {
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            if (tableau[size*i+j] == 0) {
+            if (tableau[size * i + j] == 0) {
                 emptyCellIndices[emptyCells][0] = i;
                 emptyCellIndices[emptyCells][1] = j;
                 emptyCells++;
@@ -188,7 +244,7 @@ void Plateau::nouvelleCase() {
     int rowIndex = emptyCellIndices[randomCell][0];
     int colIndex = emptyCellIndices[randomCell][1];
 
-    tableau[size*rowIndex+colIndex] = targetValue;
+    tableau[size * rowIndex + colIndex] = targetValue;
 }
 
 int Plateau::getSize() const {
@@ -196,5 +252,5 @@ int Plateau::getSize() const {
 }
 
 int Plateau::getTableau(int i, int j) {
-    return tableau[size*i+j];
+    return tableau[size * i + j];
 }

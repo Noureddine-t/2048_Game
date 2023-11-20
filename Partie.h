@@ -10,8 +10,8 @@
 class Partie {
 private:
     Plateau plateau;
-    int score;
-    int cptMouvement;
+    int score=0;
+    int cptMouvement=0;
 
 public:
     Partie(int size) ;

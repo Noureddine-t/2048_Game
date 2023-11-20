@@ -1,0 +1,28 @@
+
+[	cpp:S1763$":loop will run at most once (loop increment never executed)(²ÀËøúÿÿÿÿ8“¬¸ç¾1
+}	cpp:S3230
+"cDo not assign data members in a constructor. Initialize member "tableau" in an initialization list.(İ°áÄüÿÿÿÿ
+k	cpp:S5025
+"QReplace the use of "new" with an operation that automatically manages the memory.(İ°áÄüÿÿÿÿ
+O	cpp:S5025":Rewrite the code so that you no longer need this "delete".(È˜˜Ó
+p	cpp:S3776"TRefactor this function to reduce its Cognitive Complexity from 84 to the 25 allowed.(ˆµÑ8É‘£ç¾1
+mcpp:S134"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ô¦¿¬ıÿÿÿÿ8Ü²«ç¾1
+mcpp:S134#"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ô¦¿¬ıÿÿÿÿ8ÌÍ³ç¾1
+mcpp:S134-"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(şôû¯şÿÿÿÿ8ÌÍ³ç¾1
+mcpp:S1348"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(şôû¯şÿÿÿÿ8¼İµç¾1
+a	cpp:S1751$"@Change this loop body so that it can be executed more than once.(²ÀËøúÿÿÿÿ8Çï³ç¾1
+hcpp:S134G"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(Ğå´£8­İµç¾1
+mcpp:S134S"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(“É­ëúÿÿÿÿ8­İµç¾1
+hcpp:S134_"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(Ğå´£8­İµç¾1
+mcpp:S134k"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(“É­ëúÿÿÿÿ8ºİµç¾1
+v	cpp:S3776€"TRefactor this function to reduce its Cognitive Complexity from 40 to the 25 allowed.(°Ó»şÿÿÿÿ8¼İµç¾1
+icpp:S134…"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ˆ»»—8¼İµç¾1
+icpp:S134Š"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖçØñ8¼İµç¾1
+icpp:S134"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ç£’‹8…§¶ç¾1
+ncpp:S134”"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖşÕÊùÿÿÿÿ8â´·ç¾1
+s	cpp:S5025Ê"QReplace the use of "new" with an operation that automatically manages the memory.(İ°áÄüÿÿÿÿ8Ïİµç¾1
+K	cpp:S5817Ò")This function should be declared "const".(€ÿøŠşÿÿÿÿ8Åô¿ç¾1
+Z	cpp:S5945â"=Use "std::array" or "std::vector" instead of a C-style array.(ïÒö8Ïİµç¾1
+Q	cpp:S5020ñ"/Replace "rand" with the facilities in <random>.(ÂªĞöûÿÿÿÿ8Ù¡®ç¾1
+L	cpp:S5020ò"/Replace "rand" with the facilities in <random>.(¼ÏÜ8Ïİµç¾1
+K	cpp:S5817ş")This function should be declared "const".(š±×ˆúÿÿÿÿ8Åô¿ç¾1

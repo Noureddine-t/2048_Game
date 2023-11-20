@@ -17,12 +17,16 @@ public:
 
     ~Plateau() ;
 
+    bool estDeplacable(Direction dir) const;
+
     void moveDirectionLeft();
     void moveDirectionRight();
     void moveDirectionUp();
     void moveDirectionDown();
 
     void moveDirection(Direction dir);
+
+    bool estFusionnable(Direction dir) const;
 
     void fusionDirectionLeft();
     void fusionDirectionRight();
@@ -31,9 +35,15 @@ public:
 
     void fusionDirection(Direction dir);
 
+    Plateau(const Plateau& other);
+
+    bool operator!=(const Plateau& other) const; // Declaration for operator!=
+
      int getSize() const ;
 
     void affiche() ;
+
+
 
     void nouvelleCase();
 

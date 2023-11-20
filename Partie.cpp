@@ -5,23 +5,33 @@
 #include "Partie.h"
 
 
-Partie::Partie(int size) : plateau(size), score(0), cptMouvement(0) {}
+Partie::Partie(int size) : plateau(size) {}
 
 void Partie::jouer(Direction dir) {
-                plateau.moveDirection(dir);
-                plateau.nouvelleCase();
-                cptMouvement++;
+    // Sauvegarde de l'état initial du plateau
+    Plateau plateauAvant = plateau;
+
+    // Effectuer le déplacement
+    plateau.moveDirection(dir);
+
+    // Effectuer la fusion après le déplacement
+    while (plateau.estFusionnable(dir)) {
+        Plateau plateauAvantFusion = plateau;  // Sauvegarde de l'état avant la fusion
+        plateau.fusionDirection(dir);
+
+        // Vérifier si la fusion a effectivement modifié le plateau
+        if (!(plateauAvantFusion != plateau)) {
+            break;
+        }
     }
 
-
-/*void Partie::jouer(Direction dir) {
-
-    if (plateau.estDeplacable(dir) || plateau.estFusionnable(dir)) {
-        plateau.moveDirection(dir);
+    // Vérifier s'il y a eu un changement après le déplacement et la fusion
+    if (plateauAvant != plateau) {
         plateau.nouvelleCase();
         cptMouvement++;
     }
-}*/
+}
+
 
 int Partie::calculerScore() {
     score=0;
@@ -44,7 +54,3 @@ void Partie::afficher(const std::string &touche) {
     std::cout << "Nombre de mouvements : " << cptMouvement << std::endl;
     std::cout << "Touches à utiliser pour déplacement : " << touche << " \t X pour arreter " << std::endl;
 }
-
-
-
-
