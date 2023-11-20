@@ -80,27 +80,40 @@ void Plateau::moveDirection(Direction dir) {
 
 bool Plateau::estFusionnable(Direction dir) const {
     bool canFusion = false;
-    if (dir == Direction::right) {
-        for (int i = 0; i < size; i++)
-            for (int j = size - 1; j > 0; j--)
-                if (tableau[size * i + j] == tableau[size * i + j - 1])
-                    canFusion = true;
-    } else if (dir == Direction::left) {
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size - 1; j++)
-                if (tableau[size * i + j] == tableau[size * i + j + 1])
-                    canFusion = true;
-    } else if (dir == Direction::up) {
-        for (int j = 0; j < size; j++)
-            for (int i = 0; i < size - 1; i++)
-                if (tableau[size * i + j] == tableau[size * (i + 1) + j])
-                    canFusion = true;
-    } else if (dir == Direction::down) {
-        for (int j = 0; j < size; j++)
-            for (int i = size - 1; i > 0; i--)
-                if (tableau[size * i + j] == tableau[size * (i - 1) + j])
-                    canFusion = true;
+    int dirValue = static_cast<int>(dir); //conversion en int pour comparer selon les cas , sinon utiliser if (dir == Direction::right) {
+    switch (dirValue) {
+        case static_cast<int>(Direction::right): {
+            for (int i = 0; i < size; i++)
+                for (int j = size - 1; j > 0; j--)
+                    if (tableau[size * i + j] == tableau[size * i + j - 1])
+                        canFusion = true;
+            break;
+        }
+        case static_cast<int>(Direction::left): {
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size - 1; j++)
+                    if (tableau[size * i + j] == tableau[size * i + j + 1])
+                        canFusion = true;
+            break;
+        }
+        case static_cast<int>(Direction::up): {
+            for (int j = 0; j < size; j++)
+                for (int i = 0; i < size - 1; i++)
+                    if (tableau[size * i + j] == tableau[size * (i + 1) + j])
+                        canFusion = true;
+            break;
+        }
+        case static_cast<int>(Direction::down): {
+            for (int j = 0; j < size; j++)
+                for (int i = size - 1; i > 0; i--)
+                    if (tableau[size * i + j] == tableau[size * (i - 1) + j])
+                        canFusion = true;
+            break;
+        }
+        default:
+            break;
     }
+
     return canFusion;
 }
 
@@ -194,7 +207,11 @@ void Plateau::affiche() {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             if (tableau[size * i + j] != 0) {
-                std::cout << "|" << std::setw(columnWidth) << tableau[size * i + j];
+                // Ajouter un espacement pour centrer le chiffre dans la cellule
+                int paddingBefore = (columnWidth - std::to_string(tableau[size * i + j]).length()) / 2;
+                int paddingAfter = columnWidth - paddingBefore - std::to_string(tableau[size * i + j]).length();
+                std::cout << "|" << std::setw(paddingBefore) << " " << tableau[size * i + j]
+                          << std::setw(paddingAfter) << " ";
             } else {
                 std::cout << "|" << std::setw(columnWidth) << " ";
             }
@@ -203,7 +220,6 @@ void Plateau::affiche() {
         std::cout << std::string((columnWidth + 1) * size, '-') << std::endl;
     }
 }
-
 
 void Plateau::nouvelleCase() {
     int emptyCells = 0;

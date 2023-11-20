@@ -1,6 +1,8 @@
 
-B	cpp:S1103«"&Remove the misleading "//" characters.(¯êÓ8ÏÓè¾1
-~	cpp:S5276¾"\implicit conversion loses integer precision: 'size_type' (aka 'unsigned long long') to 'int'(ßÊõÜÿÿÿÿÿ8şĞè¾1
+B	cpp:S1103¸"&Remove the misleading "//" characters.(¯êÓ8ÏÓè¾1
+~	cpp:S5276Ë"\implicit conversion loses integer precision: 'size_type' (aka 'unsigned long long') to 'int'(ßÊõÜÿÿÿÿÿ8ÿ…î¾1
+~	cpp:S5276Ó"\implicit conversion loses integer precision: 'size_type' (aka 'unsigned long long') to 'int'(çË„úÿÿÿÿ8ÿ…î¾1
+~	cpp:S5276Ô"\implicit conversion loses integer precision: 'size_type' (aka 'unsigned long long') to 'int'(›È®˜ÿÿÿÿÿ8ÿ…î¾1
 }	cpp:S3230
 "cDo not assign data members in a constructor. Initialize member "tableau" in an initialization list.(İ°áÄüÿÿÿÿ
 k	cpp:S5025
@@ -10,15 +12,17 @@ hcpp:S134"MRefactor this code to not nest more than 3 if|for|do|while|switch
 mcpp:S134$"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(“É­ëúÿÿÿÿ8­İµç¾1
 hcpp:S1340"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(Ğå´£8­İµç¾1
 mcpp:S134<"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(“É­ëúÿÿÿÿ8ºİµç¾1
-u	cpp:S3776Q"TRefactor this function to reduce its Cognitive Complexity from 40 to the 25 allowed.(°Ó»şÿÿÿÿ8¼İµç¾1
-hcpp:S134V"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ˆ»»—8¼İµç¾1
-hcpp:S134["MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖçØñ8¼İµç¾1
-hcpp:S134`"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ç£’‹8…§¶ç¾1
-mcpp:S134e"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖşÕÊùÿÿÿÿ8â´·ç¾1
-s	cpp:S5025›"QReplace the use of "new" with an operation that automatically manages the memory.(İ°áÄüÿÿÿÿ8Ïİµç¾1
-K	cpp:S5817³")This function should be declared "const".(€ÿøŠşÿÿÿÿ8ş Óè¾1
-Z	cpp:S5945Ò"=Use "std::array" or "std::vector" instead of a C-style array.(ïÒö8Í‘Ğè¾1
-Q	cpp:S5020á"/Replace "rand" with the facilities in <random>.(ÂªĞöûÿÿÿÿ8Í‘Ğè¾1
-L	cpp:S5020â"/Replace "rand" with the facilities in <random>.(¼ÏÜ8Í‘Ğè¾1
-K	cpp:S5817î")This function should be declared "const".(š±×ˆúÿÿÿÿ8‡¡Óè¾1
-:cpp:S125¢"Remove the commented out code.(–±Ù8ê¹Óè¾1
+j	cpp:S6004T"IUse the init-statement to declare "dirValue" inside the switch statement.(¾ùÉúÿÿÿÿ8»Åéí¾1
+u	cpp:S3776Q"TRefactor this function to reduce its Cognitive Complexity from 37 to the 25 allowed.(°Ó»şÿÿÿÿ8¼İµç¾1
+hcpp:S134X"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ˆ»»—8»Åéí¾1
+hcpp:S134_"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖçØñ8»Åéí¾1
+hcpp:S134f"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ç£’‹8»Åéí¾1
+mcpp:S134m"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÖşÕÊùÿÿÿÿ8»Åéí¾1
+C	cpp:S5827S"'Replace the redundant type with "auto".(ºËé8»Åéí¾1
+s	cpp:S5025¨"QReplace the use of "new" with an operation that automatically manages the memory.(İ°áÄüÿÿÿÿ8Ïİµç¾1
+K	cpp:S5817À")This function should be declared "const".(€ÿøŠşÿÿÿÿ8¯ÿ…î¾1
+Z	cpp:S5945â"=Use "std::array" or "std::vector" instead of a C-style array.(ïÒö8Í‘Ğè¾1
+Q	cpp:S5020ñ"/Replace "rand" with the facilities in <random>.(ÂªĞöûÿÿÿÿ8Í‘Ğè¾1
+L	cpp:S5020ò"/Replace "rand" with the facilities in <random>.(¼ÏÜ8Í‘Ğè¾1
+K	cpp:S5817ş")This function should be declared "const".(š±×ˆúÿÿÿÿ8‡¡Óè¾1
+:cpp:S125¯"Remove the commented out code.(–±Ù8ê¹Óè¾1
