@@ -14,25 +14,19 @@ private:
 
 public:
     Plateau(int size) ;
-
     ~Plateau() ;
-
-    bool estDeplacable(Direction dir) const;
 
     void moveDirectionLeft();
     void moveDirectionRight();
     void moveDirectionUp();
     void moveDirectionDown();
-
     void moveDirection(Direction dir);
 
     bool estFusionnable(Direction dir) const;
-
     void fusionDirectionLeft();
     void fusionDirectionRight();
     void fusionDirectionUp();
     void fusionDirectionDown();
-
     void fusionDirection(Direction dir);
 
     Plateau(const Plateau& other);
@@ -42,8 +36,6 @@ public:
      int getSize() const ;
 
     void affiche() ;
-
-
 
     void nouvelleCase();
 

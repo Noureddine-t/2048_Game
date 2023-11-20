@@ -17,53 +17,6 @@ Plateau::~Plateau() {
     delete[] tableau;
 }
 
-bool Plateau::estDeplacable(Direction dir) const {
-    bool canMove = false;
-    if (dir == Direction::right) {
-        for (int i = 0; i < size; i++)
-            for (int j = size - 1; j >= 0; j--)
-                if (tableau[size * i + j] == 0)
-                    for (int k = j - 1; k >= 0; k--)
-                        if (tableau[size * i + k] != 0) {
-                            canMove = true;
-                            break;
-                        }
-    }
-    else if (dir == Direction::left) {
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                if (tableau[size * i + j] == 0)
-                    for (int k = j + 1; k < size; k++) {
-                        if (tableau[size * i + k] != 0)
-                            canMove = true;
-                        break;
-                    }
-    }
-    else if (dir == Direction::up) {
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                if (tableau[size * j + i] == 0)
-                    for (int k = j + 1; k < size; k++)
-                        if (tableau[size * k + i] != 0) {
-                            canMove = true;
-                            break;
-                        }
-    }
-
-    else if (dir == Direction::down) {
-        for (int i = 0; i < size; i++)
-            for (int j = size - 1; j >= 0; j--)
-                if (tableau[size * j + i] == 0)
-                    for (int k = j - 1; k >= 0; k--)
-                        if (tableau[size * k + i] != 0) {
-                        canMove = true;
-                        break;
-                }
-    }
-    return canMove;
-}
-
-
 void Plateau::moveDirectionLeft() {
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
@@ -206,8 +159,9 @@ Plateau::Plateau(const Plateau &other) : size(other.size) {
 bool Plateau::operator!=(const Plateau &other) const {
     return std::memcmp(tableau, other.tableau, size * size * sizeof(int)) != 0;
 }
-
+/*
 void Plateau::affiche() {
+    std::cout << "-----------------------------------------" << std::endl;
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             if (tableau[size * i + j] != 0)
@@ -220,6 +174,36 @@ void Plateau::affiche() {
         std::cout << "-----------------------------------------" << std::endl;
     }
 }
+*/
+
+void Plateau::affiche() {
+    int maxNumber = 0;
+
+    // Trouver le plus grand nombre dans le tableau
+    for (int i = 0; i < size * size; i++) {
+        if (tableau[i] > maxNumber) {
+            maxNumber = tableau[i];
+        }
+    }
+
+    // Calculer la largeur de chaque colonne en fonction du plus grand nombre
+    int columnWidth = std::to_string(maxNumber).length() + 2;
+
+    // Afficher le tableau
+    std::cout << std::string((columnWidth + 1) * size, '-') << std::endl;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (tableau[size * i + j] != 0) {
+                std::cout << "|" << std::setw(columnWidth) << tableau[size * i + j];
+            } else {
+                std::cout << "|" << std::setw(columnWidth) << " ";
+            }
+        }
+        std::cout << "|" << std::endl;
+        std::cout << std::string((columnWidth + 1) * size, '-') << std::endl;
+    }
+}
+
 
 void Plateau::nouvelleCase() {
     int emptyCells = 0;

@@ -20,9 +20,8 @@ void Partie::jouer(Direction dir) {
         plateau.fusionDirection(dir);
 
         // Vérifier si la fusion a effectivement modifié le plateau
-        if (!(plateauAvantFusion != plateau)) {
+        if (!(plateauAvantFusion != plateau))
             break;
-        }
     }
 
     // Vérifier s'il y a eu un changement après le déplacement et la fusion

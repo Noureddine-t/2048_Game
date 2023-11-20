@@ -7,8 +7,8 @@
 int main() {
     srand(time(0));
     int size=4;
-    //std::cout<<"enter la taille du tableau N*N : "<<std::endl;
-    //std::cin>>size;
+    std::cout<<"enter la taille du tableau N*N : "<<std::endl;
+    std::cin>>size;
     Partie match(size);
     match.getPlateau().nouvelleCase();
     match.afficher("ZQSD");
